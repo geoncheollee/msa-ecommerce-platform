@@ -30,5 +30,7 @@
 │   ├── architecture-diagram.png
 │   └── user-api-spec.md
 ├── README.md                    # 전체 프로젝트 문서화
+
+* 목표로 하는 패키지 구조
 ```
 
