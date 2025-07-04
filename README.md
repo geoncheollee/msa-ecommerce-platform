@@ -33,3 +33,14 @@
 
 * 목표로 하는 패키지 구조
 ```
+
+```
+1. 사용자 서비스: 회원가입, 로그인, JWT 발급
+2. 주문 서비스: 주문 생성 → Kafka 메시지 발행
+3. 결제 서비스: Kafka 메시지 Consume → 결제 처리
+4. 인증/인가: Spring Security + JWT
+5. 캐시: Redis - 상품 정보, 세션 저장
+6. 메시징: Kafka - 주문 이벤트 처리
+7. 배포: GitHub Actions + DockerHub → EC2 or K8s
+8. 운영: docker-compose (로컬), Kubernetes 클러스터 (심화)
+```
