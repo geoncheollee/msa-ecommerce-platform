@@ -1,50 +1,50 @@
-# 📘 user-service: 유비쿼터스 언어 정의
+# 📘 user-service: 유비쿼터스 언어 정의 (한글 / 영어 병기)
 
-> 본 문서는 `user-service`에서 사용하는 도메인 언어(유비쿼터스 언어)를 정의한 문서입니다.  
-> 각 용어는 Bounded Context 내부에서만 유효하며, 해당 문맥에서의 의미와 책임을 함께 명시합니다.
+> 본 문서는 `user-service`의 핵심 도메인 용어를 유비쿼터스 언어로 정의한 자료입니다.  
+> 각 용어는 한글명 / 영어명을 함께 표기하며, 도메인 내에서의 책임과 사용 맥락을 명확히 합니다.
 
 ---
 
 ## 🧩 핵심 도메인 용어
 
-| 용어 | 설명 | 도메인 역할 | 사용 맥락 |
-|------|------|--------------|-----------|
-| **User** | 이메일/비밀번호로 가입하고 인증하는 시스템 이용자 | Aggregate Root | 회원가입, 로그인, 주문 연계 등 |
-| **Signup** | 새로운 회원 정보를 입력받아 등록하는 절차 | Command | POST `/users/signup` API |
-| **Login** | 사용자의 이메일/비밀번호를 검증하고 토큰 발급 | Command | POST `/users/login`, JWT 생성 |
-| **JWT Token** | 인증된 사용자의 요청을 인증하기 위한 서명된 토큰 | Value Object | Authorization 헤더로 전달됨 |
-| **Role** | 사용자의 권한 유형 (e.g., USER, ADMIN) | Enum | 보안 필터, 관리자 기능 제어 |
-| **PasswordEncoder** | 평문 비밀번호를 안전하게 암호화하는 컴포넌트 | Service | 회원가입/로그인 시 암호화 수행 |
-| **TokenProvider** | JWT 토큰 생성 및 검증 로직 담당 | Domain Service | 로그인, 인증 필터 |
-| **UserGrade** | 사용자 등급 (BASIC, VIP 등) | Enum / 정책 | 누적 구매액, 이벤트 참여 등으로 승급 |
+| 한글명 | 영어명 | 설명 | 도메인 역할 | 사용 맥락 |
+|--------|--------|------|--------------|-----------|
+| 회원 | User | 이메일과 비밀번호로 가입한 사용자 | Aggregate Root | 주문, 인증 대상 |
+| 회원가입 | Signup | 사용자 정보 입력 후 시스템 등록 절차 | Command | POST `/users/signup` |
+| 로그인 | Login | 이메일/비밀번호 인증 후 토큰 발급 | Command | POST `/users/login` |
+| 인증 토큰 | JWT Token | 인증된 사용자의 요청에 포함되는 서명된 토큰 | Value Object | Authorization 헤더 사용 |
+| 권한 | Role | 사용자의 역할 (예: USER, ADMIN) | Enum | 보안 필터, 관리자 판단 |
+| 비밀번호 인코더 | PasswordEncoder | 평문 비밀번호를 암호화하는 도구 | Service | 가입, 로그인 시 암호화 |
+| 토큰 제공자 | TokenProvider | JWT 생성/검증을 담당하는 컴포넌트 | Domain Service | 로그인 처리, 인증 필터 |
+| 회원 등급 | UserGrade | 누적 실적에 따라 부여되는 등급 (BASIC, VIP 등) | Enum / 정책 | 사용자 분류, 이벤트 제공 |
 
 ---
 
 ## 🧭 보조 개념 및 외부 연계
 
-| 용어 | 설명 | 관련성 |
-|------|------|--------|
-| **Kafka Event - UserRegistered** | 회원가입 완료 시 발행되는 이벤트 | order-service, marketing-service 등 |
-| **Refresh Token** | 장기 로그인 유지를 위한 토큰 | Redis 저장 또는 DB 사용 |
-| **MyPage** | 사용자가 본인의 정보를 조회/수정할 수 있는 페이지 | 인증 필요 API |
+| 한글명 | 영어명 | 설명 | 관련성 |
+|--------|--------|------|--------|
+| 회원가입 이벤트 | UserRegistered Event | 회원가입 완료 시 발행되는 Kafka 이벤트 | order-service, 알림 등 |
+| 리프레시 토큰 | Refresh Token | 장기 인증 유지를 위한 토큰 | Redis 저장 또는 DB 사용 |
+| 마이페이지 | MyPage | 사용자가 자기 정보를 조회/수정하는 화면 | 인증된 사용자 API |
 
 ---
 
-## 🗂 파일/패키지 구조 대응표 (예시)
+## 🗂 패키지/클래스 대응 예시
 
-| 용어 | 클래스/패키지 예시 | 역할 |
-|------|----------------------|------|
-| User | `domain/User.java` | JPA Entity |
-| UserController | `controller/UserController.java` | API 진입점 |
-| UserService | `service/UserService.java` | 비즈니스 로직 |
-| JwtProvider | `security/JwtProvider.java` | JWT 발급/검증 로직 |
-| AuthDto | `dto/LoginRequest`, `TokenResponse` | 요청/응답 객체 |
+| 한글명 | 클래스 / 패키지 경로 | 역할 |
+|--------|----------------------|------|
+| 회원 | `domain/User.java` | JPA Entity |
+| 회원 컨트롤러 | `controller/UserController.java` | API 진입점 |
+| 회원 서비스 | `service/UserService.java` | 비즈니스 로직 |
+| JWT 제공자 | `security/JwtProvider.java` | JWT 발급/검증 |
+| 인증 DTO | `dto/LoginRequest.java`, `TokenResponse.java` | 요청/응답 데이터 객체 |
 
 ---
 
-## ✅ 참고
+## ✅ 참고 사항
 
-- 이 문서는 `user-service` 내부에서만 유효한 언어 체계를 기반으로 합니다.
-- 도메인 간 용어가 중복되더라도, 각 서비스 내부에서는 의미가 달라질 수 있습니다.
-- 다른 서비스와 연동하는 이벤트, 메시지 정의도 향후 포함될 수 있습니다.
+- 유비쿼터스 언어는 `user-service` Bounded Context 내에서 유효합니다.
+- 동일한 영어명이 다른 서비스에서 다른 의미를 가질 수 있으므로, 반드시 문맥에 따라 사용해야 합니다.
+- 이 문서는 ERD 설계, API 명세서, Swagger, Kafka 메시지 설계 등과 연동됩니다.
 
