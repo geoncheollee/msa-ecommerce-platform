@@ -118,12 +118,13 @@
 - **Event**: `UserRegisteredEvent`
 - **State 변경**: `status = ACTIVE`, `createdDateTime` 설정
 
-```
-사용자 입력
-→ RegisterUserCommand 발행
-→ User Aggregate 생성
-→ UserRegisteredEvent 발행
-→ 상태: ACTIVE / 가입 시간 저장
+```mermaid
+flowchart TD
+    A[사용자 입력: 이메일/비밀번호/닉네임] --> B[RegisterUserCommand 발행]
+    B --> C[User Aggregate 생성]
+    C --> D[UserRegisteredEvent 발행]
+    D --> E[계정 상태: ACTIVE]
+    D --> F[가입 시각 저장]
 ```
 
 ---
@@ -135,12 +136,14 @@
 - **Event**: `UserAuthenticatedEvent`
 - **Side Effect**: accessToken, refreshToken 발급
 
-```
-이메일/비밀번호 입력
-→ AuthenticateUserCommand
-→ 사용자 검증
-→ UserAuthenticatedEvent
-→ 토큰 발급 (accessToken, refreshToken)
+```mermaid
+flowchart TD
+    A[사용자 입력: 이메일/비밀번호] --> B[AuthenticateUserCommand 발행]
+    B --> C[비밀번호 일치 여부 검증]
+    C --> D{인증 성공 여부}
+    D -- 예 --> E[UserAuthenticatedEvent 발행]
+    E --> F[AccessToken, RefreshToken 발급]
+    D -- 아니오 --> G[인증 실패 응답 반환]
 ```
 
 
@@ -152,11 +155,12 @@
 - **Event**: `UserWithdrawnEvent`
 - **State 변경**: `status = WITHDRAWN`
 
-```
-탈퇴 요청
-→ WithdrawUserCommand
-→ UserWithdrawnEvent 발행
-→ 상태: WITHDRAWN
+```mermaid
+flowchart TD
+    A[사용자 탈퇴 요청] --> B[WithdrawUserCommand 발행]
+    B --> C[User 상태 변경: WITHDRAWN]
+    C --> D[UserWithdrawnEvent 발행]
+    D --> E[외부 서비스로 탈퇴 이벤트 전파]
 ```
 
 ---
