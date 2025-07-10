@@ -209,64 +209,64 @@ flowchart TD
 
 
 ```mermaid
-mindmap
-  root((나 (10년차 개발자)))
+graph TD
+  root["나 (10년차 개발자)"]
 
-  기술 스택 (Tech Stack)
-    주력 기술
-      Frontend
-        HTML/CSS/jQuery
-      Backend
-        Spring Boot
-        Java
-      Database
-        MySQL
-        Oracle
-        Tibero
-      DevOps / Infra
-        Jenkins
-        Tomcat
-        Git
-        SVN
-    💻 경험한 기술 👉
-    📚 공부하고 있는 기술 👉
+  root --> tech["기술 스택 (Tech Stack)"]
+  tech --> mainTech["주력 기술"]
+  mainTech --> frontend["Frontend"]
+  frontend --> htmlcss["HTML/CSS/jQuery"]
+  mainTech --> backend["Backend"]
+  backend --> spring["Spring Boot"]
+  backend --> java["Java"]
+  mainTech --> db["Database"]
+  db --> mysql["MySQL"]
+  db --> oracle["Oracle"]
+  db --> tibero["Tibero"]
+  mainTech --> infra["DevOps / Infra"]
+  infra --> jenkins["Jenkins"]
+  infra --> tomcat["Tomcat"]
+  infra --> git["Git"]
+  infra --> svn["SVN"]
+  tech --> myTech["💻 경험한 기술 👉"]
+  tech --> myStudy["📚 공부하고 있는 기술 👉"]
 
-  프로젝트 경험
-    고객센터 채팅 솔루션 개발 및 구축
-    고객센터 지식관리 솔루션 개발 및 구축
-    고객센터 감성분석 솔루션 구축
+  root --> projects["프로젝트 경험"]
+  projects --> project1["고객센터 채팅 솔루션 개발 및 구축"]
+  projects --> project2["고객센터 지식관리 솔루션 개발 및 구축"]
+  projects --> project3["고객센터 감성분석 솔루션 구축"]
 
-  역할 및 기여
-    PL / 개발 리더
-    설계 및 리뷰
-    성능 개선
-    보안 강화
+  root --> roles["역할 및 기여"]
+  roles --> pl["PL / 개발 리더"]
+  roles --> design["설계 및 리뷰"]
+  roles --> performance["성능 개선"]
+  roles --> security["보안 강화"]
 
-  문제 해결 / 성과
-    트래픽 병목 해결
-    성능 개선
-    장애 대응
-    테스트 자동화
+  root --> solution["문제 해결 / 성과"]
+  solution --> bottleneck["트래픽 병목 해결"]
+  solution --> solution1["성능 개선"]
+  solution --> issuefix["장애 대응"]
+  solution --> testauto["테스트 자동화"]
 
-  성장 경험
-    사이드 공부
-      아키텍처
-      TDD
-    블로그 운영(티스토리) 👉
-    자격증 (정보처리기사 등)
-    스터디/컨퍼런스 참여
-    코딩테스트
-      프로그래머스 👉
-      코딜리티 👉
-      백준
-      테스트돔
+  root --> growth["성장 경험"]
+  growth --> study["사이드 공부"]
+  study --> study_architecture["아키텍처"]
+  study --> study_TDD["TDD"]
+  growth --> blog["블로그 운영(티스토리) 👉"]
+  growth --> cert["자격증 (정보처리기사 등)"]
+  growth --> studygroup["스터디/컨퍼런스 참여"]
+  growth --> codingtest["코딩테스트"]
+  codingtest --> programmers["프로그래머스 👉"]
+  codingtest --> codility["코딜리티 👉"]
+  codingtest --> acmicpc["백준"]
+  codingtest --> testDome["테스트돔"]
 
-  협업 경험
-    기획/디자인 협업
-    Notion, Slack 등 도구
+  root --> collab["협업 경험"]
+  collab --> designCollab["기획/디자인 협업"]
+  collab --> tools["Notion, Slack 등 도구"]
 
-  향후 목표
-    아키텍처 설계 능력 강화
-    대용량 트래픽 처리 기술
+  root --> goal["향후 목표"]
+  goal --> arch["아키텍처 설계 능력 강화"]
+  goal --> scale["대용량 트래픽 처리 기술"]
 
 ```
