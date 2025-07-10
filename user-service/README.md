@@ -94,5 +94,5 @@ docker-compose up
 
 ## 
 - 브랜치 전략: feature/{기능명}, fix/{수정내용}
-- 커밋 컨벤션: Conventional Commits 사용
-[Conventional Commits][https://www.conventionalcommits.org/ko/v1.0.0/]
+- 커밋 컨벤션: [Conventional Commits](https://www.conventionalcommits.org/ko/v1.0.0/)
+
