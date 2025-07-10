@@ -120,32 +120,6 @@
 
 ```mermaid
 flowchart TD
-    A[사용자 입력: 이메일/비밀번호/닉네임] --> B[RegisterUserCommand 발행]
-    B --> C[User Aggregate 생성]
-    C --> D[UserRegisteredEvent 발행]
-    D --> E[계정 상태: ACTIVE]
-    D --> F[가입 시각 저장]
-```
-```mermaid
-flowchart TD
-    A([사용자 입력<br/>이메일/비밀번호/닉네임]):::input
-    B([RegisterUserCommand 발행]):::command
-    C([User Aggregate 생성]):::aggregate
-    D([UserRegisteredEvent 발행]):::event
-    E([계정 상태: ACTIVE]):::state
-    F([가입 시각 저장]):::state
-
-    A --> B --> C --> D --> E
-    D --> F
-
-    classDef input fill:#ffffff,stroke:#2196f3,color:#0d47a1;
-    classDef command fill:#ffffff,stroke:#7e57c2,color:#4a148c;
-    classDef aggregate fill:#ffffff,stroke:#ff9800,color:#e65100;
-    classDef event fill:#ffffff,stroke:#81c784,color:#33691e;
-    classDef state fill:#ffffff,stroke:#f06292,color:#880e4f;
-```
-```mermaid
-flowchart TD
     A([사용자 입력<br/>이메일 / 비밀번호 / 닉네임]):::input
     B([RegisterUserCommand 발행]):::command
     C([User Aggregate 생성]):::aggregate
@@ -174,12 +148,25 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[사용자 입력: 이메일/비밀번호] --> B[AuthenticateUserCommand 발행]
-    B --> C[비밀번호 일치 여부 검증]
-    C --> D{인증 성공 여부}
-    D -- 예 --> E[UserAuthenticatedEvent 발행]
-    E --> F[AccessToken, RefreshToken 발급]
-    D -- 아니오 --> G[인증 실패 응답 반환]
+    A([사용자 입력<br/>이메일 / 비밀번호]):::input
+    B([AuthenticateUserCommand 발행]):::command
+    C([비밀번호 검증]):::service
+    D{인증 성공 여부}:::decision
+    E([UserAuthenticatedEvent 발행]):::event
+    F([AccessToken, RefreshToken 발급]):::token
+    G([인증 실패 응답]):::error
+
+    A --> B --> C --> D
+    D -- 예 --> E --> F
+    D -- 아니오 --> G
+
+    classDef input fill:#e3f2fd,stroke:#90caf9,color:#0d47a1;
+    classDef command fill:#ede7f6,stroke:#9575cd,color:#4a148c;
+    classDef service fill:#fbe9e7,stroke:#ffab91,color:#bf360c;
+    classDef decision fill:#f0f4c3,stroke:#dce775,color:#827717;
+    classDef event fill:#f1f8e9,stroke:#aed581,color:#33691e;
+    classDef token fill:#e0f7fa,stroke:#4dd0e1,color:#006064;
+    classDef error fill:#ffebee,stroke:#ef9a9a,color:#b71c1c;
 ```
 
 
@@ -193,10 +180,19 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[사용자 탈퇴 요청] --> B[WithdrawUserCommand 발행]
-    B --> C[User 상태 변경: WITHDRAWN]
-    C --> D[UserWithdrawnEvent 발행]
-    D --> E[외부 서비스로 탈퇴 이벤트 전파]
+    A([사용자 탈퇴 요청]):::input
+    B([WithdrawUserCommand 발행]):::command
+    C([User 상태 변경: WITHDRAWN]):::state
+    D([UserWithdrawnEvent 발행]):::event
+    E([외부 서비스로 이벤트 전파]):::external
+
+    A --> B --> C --> D --> E
+
+    classDef input fill:#e3f2fd,stroke:#90caf9,color:#0d47a1;
+    classDef command fill:#ede7f6,stroke:#9575cd,color:#4a148c;
+    classDef state fill:#fce4ec,stroke:#f48fb1,color:#880e4f;
+    classDef event fill:#f1f8e9,stroke:#aed581,color:#33691e;
+    classDef external fill:#fffde7,stroke:#fff176,color:#f57f17;
 ```
 
 ---
