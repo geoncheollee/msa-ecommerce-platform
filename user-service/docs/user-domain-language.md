@@ -206,3 +206,67 @@ flowchart TD
 | WITHDRAWN   | 탈퇴 처리된 계정 |
 
 ---
+
+
+```mermaid
+mindmap
+  root((나 (10년차 개발자)))
+
+  기술 스택 (Tech Stack)
+    주력 기술
+      Frontend
+        HTML/CSS/jQuery
+      Backend
+        Spring Boot
+        Java
+      Database
+        MySQL
+        Oracle
+        Tibero
+      DevOps / Infra
+        Jenkins
+        Tomcat
+        Git
+        SVN
+    💻 경험한 기술 👉
+    📚 공부하고 있는 기술 👉
+
+  프로젝트 경험
+    고객센터 채팅 솔루션 개발 및 구축
+    고객센터 지식관리 솔루션 개발 및 구축
+    고객센터 감성분석 솔루션 구축
+
+  역할 및 기여
+    PL / 개발 리더
+    설계 및 리뷰
+    성능 개선
+    보안 강화
+
+  문제 해결 / 성과
+    트래픽 병목 해결
+    성능 개선
+    장애 대응
+    테스트 자동화
+
+  성장 경험
+    사이드 공부
+      아키텍처
+      TDD
+    블로그 운영(티스토리) 👉
+    자격증 (정보처리기사 등)
+    스터디/컨퍼런스 참여
+    코딩테스트
+      프로그래머스 👉
+      코딜리티 👉
+      백준
+      테스트돔
+
+  협업 경험
+    기획/디자인 협업
+    Notion, Slack 등 도구
+
+  향후 목표
+    아키텍처 설계 능력 강화
+    대용량 트래픽 처리 기술
+
+```
