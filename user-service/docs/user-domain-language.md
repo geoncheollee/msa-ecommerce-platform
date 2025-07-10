@@ -146,6 +146,33 @@ flowchart TD
     classDef event fill:#f1f8e9,stroke:#aed581,color:#33691e;
     classDef state fill:#fce4ec,stroke:#f48fb1,color:#880e4f;
 ```
+```mermaid
+flowchart TD
+    %% margin 비슷한 효과
+    dummy_start[ ]:::transparent
+
+    subgraph 회원 가입 흐름
+        direction TB
+        A([사용자 입력<br/>이메일/비밀번호/닉네임]):::input
+        B([RegisterUserCommand 발행]):::command
+        C([User Aggregate 생성]):::aggregate
+        D([UserRegisteredEvent 발행]):::event
+        E([계정 상태: ACTIVE]):::state
+        F([가입 시각 저장]):::state
+
+        A --> B --> C --> D --> E
+        D --> F
+    end
+
+    dummy_start --> A
+
+    classDef input fill:#ffffff,stroke:#90caf9,color:#0d47a1;
+    classDef command fill:#ffffff,stroke:#9575cd,color:#4a148c;
+    classDef aggregate fill:#ffffff,stroke:#ffb74d,color:#e65100;
+    classDef event fill:#ffffff,stroke:#aed581,color:#33691e;
+    classDef state fill:#ffffff,stroke:#f48fb1,color:#880e4f;
+    classDef transparent fill:#ffffff,stroke:#ffffff;
+```
 
 ---
 
