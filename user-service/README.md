@@ -86,9 +86,8 @@ docker-compose up
 ---
 
 ## 8. 참고 자료
-- JWT 흐름 설계: [링크 또는 Wiki 참조]
-- 유비쿼터스 언어 문서: docs/ubiquitous-language.md
-- 도메인 모델링 문서: docs/user-domain-modeling.md
+- ~~JWT 흐름 설계: [링크 또는 Wiki 참조]~~
+- 도메인 모델링 문서 : [ubiquitous-language.md](https://github.com/geoncheollee/msa-ecommerce-platform/blob/main/user-service/docs/user-domain-language.md)
 
 ---
 
